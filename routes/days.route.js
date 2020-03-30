@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-let controller = require('../controller/package.controller')
+let controller = require('../controller/day.controller')
 
 
 router.route('/')
@@ -10,10 +10,5 @@ router.route('/')
 
 router.route('/:id')
 .delete(controller.deleteOne)
-//.post(controller.addDays)
-.get(controller.getOne)
-
-router.route('/:id/days')
-.post(controller.addDays)
 
 module.exports = router;

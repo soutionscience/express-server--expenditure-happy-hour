@@ -40,14 +40,27 @@ exports.deleteOne = (req, res, next)=>{
 }
 
 exports.addDays = (req, res, next)=>{
+    console.log('hitting add days')
     let query = {_id: req.params.id}
-    Package.findById(query, (err, resp)=>{
-        if(err) res.status(400).send('league not found')
-        resp.days.push(req.body.dayId);
+    Package.findById(req.params.id, (err, resp)=>{
+        if(err) res.status(400).send('Package not found')
+        console.log('what are we actually sending ', req.body)
+        resp.days.push(req.body.id);
         resp.dayCount++
         resp.save((err, resp)=>{
             if(err) res.status(400).send('error saving day');
             res.status(200).send('day added to package')
         })
     })
+}
+
+exports.getOne = (req, res, next)=>{
+   // console.log('hitting get one')
+   let query = {_id: req.params.id}
+   Package.findOne(query)
+   .populate('days')
+   .exec((err, resp)=>{
+       if(err) res.status(400).send("error finding specific package")
+       res.status(200).json(resp)
+   })
 }

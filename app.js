@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 let packageRouter = require('./routes/package.routes')
+let dayRouter = require('./routes/days.route')
 
 let mongoose = require('mongoose');
 let cors = require('cors')
@@ -27,7 +28,8 @@ app.use(cors())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/packages', packageRouter)
+app.use('/api/packages', packageRouter);
+app.use('/api/days', dayRouter)
 
 /// connect to mongodb
 mongoose.connect(process.env.localDb,  { useNewUrlParser: true }, function(err, db){
