@@ -64,3 +64,16 @@ exports.getOne = (req, res, next)=>{
        res.status(200).json(resp)
    })
 }
+
+exports.deleteDay = (req, res, next)=>{
+    Package.findById(req.params.id, (err, resp)=>{
+        if(err) res.status(400).send({"error":"could not find package"})
+        if(resp.indexOf(req.body.id) != 1) res.status(400).send({"error": "day is not part of package"})
+        resp.days.splice(resp.indexOf(req.body.id), 1)
+        resp.save((err, resp=>{
+            if(err) res.status(400).send({"error":"error removing error"})
+            res.status(200).send({"deleted": "removed day"})
+        }))
+    })
+
+}
