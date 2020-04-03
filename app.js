@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 let packageRouter = require('./routes/package.routes')
 let dayRouter = require('./routes/days.route')
 
+const fileRouter = require('./routes/image.upload')
+
 let mongoose = require('mongoose');
 let cors = require('cors')
 
@@ -30,12 +32,13 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/packages', packageRouter);
 app.use('/api/days', dayRouter)
+app.use('/api/images-upload', fileRouter)
 
 /// connect to mongodb
 mongoose.connect(process.env.localDb,  { useNewUrlParser: true }, function(err, db){
   if(err) throw err
   console.log("connected: ", db.host);
-  database=db
+ database=db
 
 })
 
