@@ -6,10 +6,12 @@ const singleUpload = upload.single('image')
 
 
 router.post('/', function(req, res){
-    console.log('hitting image upload')
+   
     singleUpload(req, res, function(err){
-        if(err) console.log("error: ", err)
-        return res.json({'image url': req.file.location})
+
+        if(err) {res.status(400).send({error: [{title: "file type not allowed", detail: err.message}]})}
+        else{
+        return res.json({'image url': req.file.location})}
     })
 
 })
