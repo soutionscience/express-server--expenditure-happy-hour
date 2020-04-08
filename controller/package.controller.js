@@ -22,10 +22,10 @@ exports.get = (req, res, next)=>{
 exports.deleteAll = (req, res, next)=>{
 
  console.log('all')
-    // Package.deleteMany({},(err, resp)=>{
-    //     if(err) throw err;
-    //     res.status(200).send("deleted all packages")
-    // })
+    Package.deleteMany({},(err, resp)=>{
+        if(err) throw err;
+        res.status(200).send("deleted all packages")
+    })
 }
 
 exports.deleteOne = (req, res, next)=>{

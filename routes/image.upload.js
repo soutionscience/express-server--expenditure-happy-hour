@@ -11,7 +11,7 @@ router.post('/', function(req, res){
 
         if(err) {res.status(400).send({error: [{title: "file type not allowed", detail: err.message}]})}
         else{
-        return res.json({'image url': req.file.location})}
+        return res.json({'url': req.file.location})}
     })
 
 })
