@@ -5,7 +5,7 @@ exports.post = (req, res, next)=>{
     let newDay = new Day(req.body);
     newDay.save((err, resp)=>{
         if(err) res.status(400).send(err);
-        res.status(200).send(resp)
+        res.status(200).json(resp)
     })
 }
 
@@ -25,7 +25,7 @@ exports.deleteOne = (req, res, next)=>{
     console.log('query ', query)
      Day.deleteOne(query, (err, resp)=>{
          if(err) throw err;
-         res.status(200).send("deleted Day")
+         res.status(200).json(resp)
      })
 
 }

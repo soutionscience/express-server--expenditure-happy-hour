@@ -11,7 +11,7 @@ exports.post = (req, res, next)=>{
 }
 
 exports.get = (req, res, next)=>{
- console.log('reaching get');
+ //console.log('reaching get');
  Package.find({})
  .exec((err, resp)=>{
      if(err) res.status(400).send(err)
@@ -29,7 +29,7 @@ exports.deleteAll = (req, res, next)=>{
 }
 
 exports.deleteOne = (req, res, next)=>{
-    console.log('hitting1')
+  //  console.log('hitting1')
     let query = {_id: req.params.id}
     console.log('query ', query)
      Package.deleteOne(query, (err, resp)=>{
@@ -40,7 +40,7 @@ exports.deleteOne = (req, res, next)=>{
 }
 
 exports.addDays = (req, res, next)=>{
-    console.log('hitting add days')
+   // console.log('hitting add days')
     let query = {_id: req.params.id}
     Package.findById(req.params.id, (err, resp)=>{
         if(err) res.status(400).send('Package not found')
@@ -49,7 +49,7 @@ exports.addDays = (req, res, next)=>{
         resp.dayCount++
         resp.save((err, resp)=>{
             if(err) res.status(400).send('error saving day');
-            res.status(200).send('day added to package')
+            res.status(200).json(resp)
         })
     })
 }
