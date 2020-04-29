@@ -25,6 +25,7 @@ exports.deleteOne = (req, res, next)=>{
     console.log('query ', query)
      Day.deleteOne(query, (err, resp)=>{
          if(err) throw err;
+         
          res.status(200).json(resp)
      })
 
